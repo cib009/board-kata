@@ -1,6 +1,7 @@
 package parser
 
 import (
+	e "errors"
 	"github.com/friendsofgo/board-kata/errors"
 	"regexp"
 	"strings"
@@ -15,7 +16,8 @@ const (
 func Parse(msg string) (output string, err error) {
 
 	if len(msg) == 0 {
-		return "", errors.WrapEmptyMessage(err, "empty message received")
+		newError := e.New("empty message received")
+		return "", errors.WrapEmptyMessage(newError, "empty message")
 	}
 
 	words := strings.Fields(msg)
@@ -45,5 +47,5 @@ func Parse(msg string) (output string, err error) {
 		}
 	}
 
-	return output, nil
+	return strings.TrimPrefix(output, " "), nil
 }
