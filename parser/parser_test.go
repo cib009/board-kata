@@ -8,7 +8,5 @@ const (
 // Parse fomating the text into a valid output text
 func Parse(msg string) (output string) {
 
-
-
 	return output
 }

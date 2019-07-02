@@ -3,10 +3,9 @@ package board
 import (
 	"bufio"
 	"encoding/csv"
+	"github.com/friendsofgo/board-kata/errors"
 	"io"
 	"os"
-
-	"github.com/pkg/errors"
 )
 
 // ReadInput read the file with the inputs
@@ -16,7 +15,7 @@ func ReadInput(path string) ([]string, error) {
 	f, err := os.Open(path)
 	defer f.Close()
 	if err != nil {
-		return messages, errors.Wrapf(err, "Impossible open file")
+		return messages, errors.WrapFileNotFound(err, "Impossible open file")
 	}
 	reader := csv.NewReader(bufio.NewReader(f))
 	reader.Comma = ';'
