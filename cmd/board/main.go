@@ -2,9 +2,11 @@ package main
 
 import (
 	"fmt"
+	"github.com/friendsofgo/board-kata/parser"
+	"github.com/friendsofgo/board-kata/writter"
 	"log"
 
-	board "github.com/friendsofgo/board-kata"
+	"github.com/friendsofgo/board-kata"
 )
 
 func main() {
@@ -13,10 +15,13 @@ func main() {
 		log.Fatal(err)
 	}
 
-	// TODO: Parse each message
-	fmt.Println(msg)
+	finalMessage := ""
 
-	//TODO: Print output into an html file
+	for _, message :=range msg {
+		finalMessage += parser.Parse(message)
+	}
+
+	writter.Write(finalMessage, "/Users/carles.calsina/go/src/github.com/board-kata/example.html")
 
 	fmt.Println("done!")
 }
